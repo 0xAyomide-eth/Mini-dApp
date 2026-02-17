@@ -1,0 +1,27 @@
+{
+  "name": "mini-dapp",
+  "version": "1.0.0",
+  "description": "building a mini dApp today",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xAyomide-eth/Mini-dApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/0xAyomide-eth/Mini-dApp/issues"
+  },
+  "homepage": "https://github.com/0xAyomide-eth/Mini-dApp#readme",
+  "dependencies": {
+    "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
