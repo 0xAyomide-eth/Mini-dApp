@@ -1,9 +1,9 @@
-# Mini-dApp
+#Mini Dapp project
 
-<<<<<<< HEAD
-buidling atm
-=======
-building a mini dApp today
+# This Dapp lets users interact with ethereum sepolia Network
 
-# features - 
->>>>>>> b5eb4e5 (readme updated)
+# TO SETUP 
+1. clone the repository
+2. npm install
+3. make sure you have metemask installed or any EVM compatabile wallets
+4. then run "npx vite"
