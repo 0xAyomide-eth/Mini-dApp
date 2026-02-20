@@ -90,3 +90,20 @@ margin-top: 10px;
 .WalletAddress{
     margin-left: 10px;
 }
+
+.main{
+    display: flex;
+}
+
+ .transactions{
+    padding: 20px;
+    background-color: rgb(17, 40, 243);
+    width: 600px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.transactions p{
+    font-size: 20px;
+}
+
