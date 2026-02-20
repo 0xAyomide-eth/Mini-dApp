@@ -2,6 +2,7 @@
 import Web3 from "web3"
 
 let web3;
+let UserWalletAddress;
 
 let CurrentChain = document.querySelector(".CurrentChain")
 let walletAddress = document.querySelector(".WalletAddress")
@@ -10,7 +11,10 @@ let UserBalance = document.querySelector(".UserBal")
 let FirstInput = document.querySelector(".FirstInput")
 let LastInput = document.querySelector(".LastInput")
 let SendBtn = document.querySelector(".SendBtn")
+let TxList = document.querySelector(".Tx-list")
 
+//function to make sure the user has sepolia network enabled and the function
+//also addes sepolia eth to the users wallet if they dont have it
 async function EnsureSepolia() {
     web3 = new Web3(window.ethereum)
 
@@ -42,6 +46,47 @@ async function EnsureSepolia() {
     }
 }
 
+//function to display past transactions of the user
+async function PastTx(){
+    web3 = new Web3(window.ethereum)
+    
+    let key = import.meta.env.VITE_ALCHEMY_KEY
+    const alchemyURL = `https://eth-sepolia.g.alchemy.com/v2/${key}`
+    UserWalletAddress = (await web3.eth.getAccounts())[0]
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: 1,
+            method: "alchemy_getAssetTransfers",
+            params:[{
+                fromBlock: "0x0", //starts from the first
+                    toBlock: "latest",
+                    fromAddress: UserWalletAddress,
+                    category: ["external", "erc20"], // ETH and Tokens
+                    maxCount: "0x5", // Show last 5 
+                    order: "desc" // Newest first
+            }]
+        })
+    }
+
+
+    const Txdata = await fetch(alchemyURL,requestOptions)
+    const data = await Txdata.json()
+    const ActualData = data.result.transfers
+    const htmlContent = ActualData.map(items=>
+        `<div class="tx-card" style="border-bottom: 1px solid #ccc; padding: 10px;">
+            <p><b>from:</b>${items.from}</p>
+            <p><b>to:</b>${items.to}</p>
+            <p><b>Amount(ETH):</b>${items.value}</p>
+            <p><b>Tx hash:</b>${items.hash}</p>
+        </div>`
+    ).join('')
+
+    TxList.innerHTML = htmlContent
+}
 
 
 async function WalletConnect() {
@@ -55,8 +100,9 @@ async function WalletConnect() {
             })
 
             await EnsureSepolia()
+            await PastTx()
 
-            let UserWalletAddress = (await web3.eth.getAccounts())[0]
+            UserWalletAddress = (await web3.eth.getAccounts())[0]
             let UserBalanceBigInt = await web3.eth.getBalance(UserWalletAddress)
             let UserBalanceEth = web3.utils.fromWei(UserBalanceBigInt, 'ether')
 
@@ -98,7 +144,7 @@ async function Transaction() {
 
     let FirstInputAmount = FirstInput.value
     let LastInputAmount = LastInput.value
-    let UserWalletAddress = (await web3.eth.getAccounts())[0]
+    UserWalletAddress = (await web3.eth.getAccounts())[0]
     web3 = new Web3(window.ethereum)
 
     if (FirstInputAmount === "" && LastInputAmount === "" || FirstInputAmount !== "" && LastInputAmount === "" || FirstInputAmount === "" && LastInputAmount !== "") {
