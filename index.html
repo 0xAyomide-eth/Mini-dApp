@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
- <div class="main">
-        <div id="app-container">
-        <div class="header-1">
-            <button class="WalletConnectBtn">Connect wallet</button>
-            <p class="CurrentChain">please connect your wallet</p>
-        </div>
-        <div class="smth">
-            <p>connected wallet:
-            <p class="WalletAddress">None</p>
-            </p>
-        </div>
-        <div class="transfer-interface">
-            <div class="UserBal-Container">
-                Balance:
-                <p class="UserBal">0</p>
-            </div>
-            <input type="text" class="FirstInput" placeholder="AMOUNT TO SEND">
-            <p>to</p>
-            <input type="text" class="LastInput" placeholder="RECEIVER ADDRESS">
-            <br>
-            <button class="SendBtn">SEND</button>
-        </div>
-    </div>
 
-<div class="transactions">
-    <p>recent transactions</p>
-    <div class="Tx-list">
-        
+<body>
+    <div class="main">
+        <div id="app-container">
+            <div class="header-1">
+                <button class="WalletConnectBtn">Connect wallet</button>
+                <p class="CurrentChain">please connect your wallet</p>
+            </div>
+            <div class="smth">
+                <p>connected wallet:
+                <p class="WalletAddress">None</p>
+                </p>
+            </div>
+            <div class="transfer-interface">
+                <div class="UserBal-Container">
+                    Balance:
+                    <p class="UserBal">0</p>
+                </div>
+                <input type="text" class="FirstInput" placeholder="AMOUNT TO SEND">
+                <p>to</p>
+                <input type="text" class="LastInput" placeholder="RECEIVER ADDRESS">
+                <br>
+                <button class="SendBtn">SEND</button>
+            </div>
+        </div>
+
+        <div class="transactions">
+            <p>recent transactions</p>
+            <div class="Tx-list">
+
+            </div>
+        </div>
     </div>
-</div>
- </div>
 
     <script type="module" src="script.js"></script>
 </body>
